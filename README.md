@@ -1,4 +1,4 @@
 jQNote
 ======
 
-Notifications plugin for jQuery
+Notifications plugin for jQuery.

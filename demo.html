@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>jQuery Note demo</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="css/jq.note.css">
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="js/jq.note.js"></script>
+
+	<style>
+		body {
+			font-family: sans-serif;
+			max-width: 840px;
+			margin-bottom: 50px;
+		}
+		pre { 
+			border: 1px solid #ddd; 
+			padding: 5px; 
+			font-size: 12px; 
+			background-color: #eee;
+		}
+		code {
+			font-size: 13px;
+			border: 1px solid #ddd;
+			background-color: #eee; 
+		}
+	</style>
+
+</head>
+<body>
+	<h1>jQuery Note</h1>
+
+	<h3>Example 1</h3>
+	<pre>
+$.note("Just a string with default settings! I'll go away after 5 seconds or when clicked.");</pre>
+	<button id="demo_1">Click me!</button>
+
+	<h3>Example 2</h3>
+	<pre>
+$.note({
+	message: "I'm a message and will only leave if clicked.",
+	autoHide: false,
+	clickToClose: true
+});</pre>
+	<button id="demo_2">Click me!</button>
+
+	<h3>Example 3</h3>
+	<pre>
+$.note({
+	message: "I'm a message and will stay here for 8 seconds then remove myself. You can't click me to dismiss. Also, slow transition.",
+	autoHide: true,
+	hideDelay: 8000,
+	clickToClose: false,
+	transitionSpeed: 900
+});</pre>
+	<button id="demo_3">Click me!</button>
+
+	<h3>Defaults</h3>
+	<pre>
+{
+	transitionSpeed: 800, // Speed of transition (in/out).
+	autoHide: false, // Hides automatically after hideDelay amount has passed.
+	hideDelay: 5000, // autoHide delay. Not used if "autoHide: false".
+	clickToClose: true, // Click to close dialog
+	message: 'No message specified' // Message to show in dialog
+}</pre>
+
+	<h3>Change defaults with $.noteSetup()</h3>
+	<p>e.g. change <code>hideDelay</code> to 1000ms:</p>
+	<pre>
+$.noteSetup({ hideDelay: 1000 });</pre>
+	<button id="demo_4">Click me!</button> (then go press the "Example 1" button).
+	<p>Anything specified with <code>$.noteSetup()</code> will overwrite corresponding default value if it's not specified separately in <code>$.note()</code> (e.g. <code>$.note({hideDelay: 300})</code> will overwrite <code>$.noteSetup</code>s <code>hideDelay</code> value).
+
+
+
+	<script>
+	$(document).ready(function() {
+		//$.noteSetup({ hideDelay: 1000 });
+
+		$('#demo_1').on('click', function() {
+			$.note("Just a string with default settings! I'll go away after 5 seconds or when clicked.");
+		});
+
+		$('#demo_2').on('click', function() {
+			$.note({
+				message: "I'm a message and will only leave if clicked.",
+				autoHide: false,
+				clickToClose: true
+			});
+		});
+
+		$('#demo_3').on('click', function() {
+			$.note({
+				message: "I'm a message and will stay here for 8 seconds then remove myself. You can't click me to dismiss. Also, slow transition.",
+				autoHide: true,
+				hideDelay: 8000,
+				clickToClose: false,
+				transitionSpeed: 900
+			});
+		});
+		$('#demo_4').on('click', function() {
+			$.noteSetup({ hideDelay: 1000 });
+		});
+	});
+	</script>
+</body>
+</html>
